@@ -101,14 +101,56 @@ const data = [
 
   Hint: You will need to use createElement more than once here!
 
-  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
+  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the 
+  data object above.
 
-  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on 
+  the 'article' div.
 
   Step 3: return the entire component.
 
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 
+  'articles' div.
 
-  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
+  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the 
+  new article.
 
 */
+const articles = document.querySelector('.articles');
+
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+  const plate = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const infoP1 = document.createElement('p');
+  const infoP2 = document.createElement('p');
+  const infoP3 = document.createElement('p');
+  const btn = document.createElement('span');
+
+  plate.appendChild(articleTitle);
+  plate.appendChild(articleDate);
+  plate.appendChild(infoP1);
+  plate.appendChild(infoP2);
+  plate.appendChild(infoP3);
+  plate.appendChild(btn);
+
+  plate.classList.add('article');
+  articleDate.classList.add('date');
+  btn.classList.add('expandButton');
+
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  infoP1.textContent = firstParagraph;
+  infoP2.textContent = secondParagraph;
+  infoP3.textContent = thirdParagraph;
+  btn.textContent = 'button';
+
+    btn.addEventListener('click', (e) => {
+      plate.classList.toggle('article-open');
+    })
+  return plate;
+}
+
+data.forEach(data => {
+  articles.appendChild(createArticle(data.title,data.date,data.firstParagraph,data.secondParagraph,data.thirdParagraph))
+})
