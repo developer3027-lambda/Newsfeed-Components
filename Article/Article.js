@@ -2,6 +2,15 @@
 /* Look over this data, then proceed to line 91*/
 const data = [
   {
+    title: 'Developer3027: "Mason Roberts"',
+    date: 'Nov 5th, 2018',
+    firstParagraph: `I am working on all the good things that are full stack web development.`,
+
+    secondParagraph: `Currently the class is working on creating components in vanilla javascript.`,
+
+    thirdParagraph: `I am adding this new section as requested.`
+  },
+  {
     title: 'Lambda School Students: "We\'re the best!"',
     date: 'Nov 5th, 2018',
     firstParagraph: `Lucas ipsum dolor sit amet ben twi'lek padmé darth darth darth moff hutt organa twi'lek. Ben amidala secura skywalker lando
@@ -112,3 +121,56 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+// <div class="article">
+//     <h2>{title of the article}</h2>
+//     <p class="date">{date of the article}</p>
+
+//     {three separate paragraph elements}
+
+//     <span class='expandButton'></span>
+//   </div>
+const articles = document.querySelector('.articles');
+
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+  const article = document.createElement('div');
+  article.classList.add('article','article-open');
+
+  const articleTitle = document.createElement('h2');
+  article.appendChild(articleTitle);
+  articleTitle.textContent = title;
+
+  const articleDate = document.createElement('p');
+  article.appendChild(articleDate);
+  articleDate.classList.add('date');
+  articleDate.textContent = date;
+
+  const fParagraph = document.createElement('p');
+  article.appendChild(fParagraph);
+  fParagraph.textContent = firstParagraph;
+
+  const sParagraph = document.createElement('p');
+  article.appendChild(sParagraph);
+  sParagraph.textContent = secondParagraph;
+
+  const tParagraph = document.createElement('p');
+  article.appendChild(tParagraph);
+  tParagraph.textContent = thirdParagraph;
+
+  const exButton = document.createElement('span');
+  article.appendChild(exButton);
+  exButton.classList.add('expandButton');
+  exButton.textContent = '\u2318';
+
+  exButton.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+  })
+
+  return article
+
+}
+
+data.forEach(info => {
+  articles.appendChild(createArticle(info.title, info.date, info.firstParagraph, info.secondParagraph, info.thirdParagraph))
+});
+
+// articles.appendChild(createArticle('title','date','one','two','three'));
